@@ -41,6 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Environment
+  - name: Back
     uniqueID: 2281766513
+    locked: 0
+  - name: Instruction
+    uniqueID: 2479459571
+    locked: 0
+  - name: Up
+    uniqueID: 2489892969
     locked: 0
