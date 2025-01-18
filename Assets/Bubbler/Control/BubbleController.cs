@@ -89,6 +89,15 @@ public class BubbleController : MonoBehaviour {
 			}
 		}
 	}
+	[SerializeField] protected int _onGroundCount;
+	public int OnGroundCount {
+		get => _onGroundCount;
+		set {
+			_onGroundCount = value;
+			if (value == 0) InAir = true;
+			else InAir = false;
+		}
+	}
 
 	public Vector2 StickForce { get; set; }
 

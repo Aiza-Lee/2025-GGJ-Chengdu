@@ -6,9 +6,9 @@ public class FootCollider : MonoBehaviour {
 		_bubbleController = transform.parent.GetComponent<BubbleController>();
 	}
 	private void OnTriggerEnter2D(Collider2D other) {
-		_bubbleController.InAir = false;
+		_bubbleController.OnGroundCount += 1;
 	}
 	private void OnTriggerExit2D(Collider2D other) {
-		_bubbleController.InAir = true;
+		_bubbleController.OnGroundCount -= 1;
 	}
 }
