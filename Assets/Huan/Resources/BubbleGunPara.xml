@@ -1,0 +1,6 @@
+<root>
+    <coolDownTimeS>0.1</coolDownTimeS>
+    <maxAmmo>100</maxAmmo>
+    <ammoGetPerS>20</ammoGetPerS>
+    <ammoCost>6</ammoCost>
+</root>
