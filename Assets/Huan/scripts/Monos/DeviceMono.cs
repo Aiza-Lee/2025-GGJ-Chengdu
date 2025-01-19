@@ -40,6 +40,9 @@ namespace Assets.scripts
         }
         private void OnTriggerStay2D(Collider2D collision)
         {
+            //var obj = collision.gameObject.GetComponent<ContactMono>();
+            //if (obj == null) return;
+            //device.Activate(obj, DeviceInteraction.Stay);
         }
     private void OnTriggerExit2D(Collider2D collision)
         {

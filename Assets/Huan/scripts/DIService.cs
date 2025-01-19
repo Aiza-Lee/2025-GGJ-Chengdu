@@ -15,6 +15,10 @@ namespace STD
             devices.Add(typeof(LeverMono));
             devices.Add(typeof(SpikeMono));
             devices.Add(typeof(FansMono));
+            devices.Add(typeof(TimeButtonMono));
+            devices.Add(typeof(LastButtonMono));
+            devices.Add(typeof(BubbleFanMono));
+            devices.Add(typeof(RootMovePlatMono));
         }
         public static Type GoFind(string typename)
         {

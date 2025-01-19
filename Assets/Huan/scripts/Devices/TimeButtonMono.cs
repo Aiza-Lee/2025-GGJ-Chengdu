@@ -1,13 +1,18 @@
 ﻿using Assets.scripts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 namespace STD
 {
-    public class ButtonMono : MonoBehaviour, IDeviceMono
+    public class TimeButtonMono : MonoBehaviour, IDeviceMono
     {
-        public List<mTuple<GameObject, int>> targets = new List<mTuple<GameObject, int>>(); 
+        public float CastTimeS = 1f;
+        public List<mTuple<GameObject, int>> targets = new List<mTuple<GameObject, int>>();
         [NonSerialized]
         public List<mTuple<IDevice, int>> targetDevices = new List<mTuple<IDevice, int>>();
         [NonSerialized]
@@ -22,26 +27,34 @@ namespace STD
                 targetDevices.Add(new mTuple<IDevice, int>(obj.device, target.Item2));
             }
         }
-        public ContactType ableContactType;
-
-        public ButtonMono()
+        private void Update()
         {
-            device = new Button(this);
+            if (tb.isActive && Time.time - tb.exitTime > CastTimeS)
+            {
+                tb.isActive = false;
+                thisAnimator.SetInteger("statu", 0);
+                foreach (var td in targetDevices) td.Item1.Activate(device, 0);
+            }
         }
-
+        public ContactType ableContactType;
+        public TimeButtonMono()
+        {
+            device = new TimeButton(this);
+        }
         public IDevice device { get; }
-
-        public DeviceMono owner { get ; set ; }
+        private TimeButton tb { get { return (TimeButton)device;} }
+        public DeviceMono owner { get; set; }
     }
-    public class Button : IDevice
+    public class TimeButton : IDevice
     {
-        private ButtonMono source;
-
-        public Button(ButtonMono source)
+        private TimeButtonMono source;
+        internal float exitTime = 0f;
+        internal bool isActive = false;
+        private int count = 0;
+        public TimeButton(TimeButtonMono source)
         {
             this.source = source;
         }
-        private int count = 0;
         public void Activate(IContact sender, DeviceInteraction t)
         {
             if ((sender.ContactType & source.ableContactType) > 0)
@@ -50,7 +63,7 @@ namespace STD
                 {
                     case DeviceInteraction.Enter:
                         count++;
-                        if (count == 1)
+                        if(count == 1)
                         {
                             source.thisAnimator.SetInteger("statu", 1);
                             foreach (var td in source.targetDevices) td.Item1.Activate(this, td.Item2);
@@ -58,11 +71,11 @@ namespace STD
                         break;
                     case DeviceInteraction.Exit:
                         count--;
+                        
                         if (count == 0)
                         {
-                            if (source.owner.triggerCount != 0) break;
-                            source.thisAnimator.SetInteger("statu", 0);
-                            foreach (var td in source.targetDevices) td.Item1.Activate(this, 0);
+                            isActive = true;
+                            exitTime = Time.time;
                         }
                         break;
                 }
@@ -72,5 +85,6 @@ namespace STD
         {
             throw new NotImplementedException();
         }
+
     }
 }

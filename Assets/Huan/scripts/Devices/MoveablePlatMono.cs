@@ -1,8 +1,11 @@
 ﻿using Assets.scripts;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 namespace STD
 {
@@ -50,14 +53,10 @@ namespace STD
 
         }
         public void Activate(IDevice sender, int instruction)
-        {
-            
+        {     
             var t = source.instructions.Find((val) => { return val.instruction == instruction; });
-            var movementmono = source.owner.gameObject.GetOrAddComponent<MovementMono>();
-            movementmono.targetPosition = t.targetPosition + (Vector2)source.DefaultPosition;
-            movementmono.targetRotation = Quaternion.LookRotation(new Vector3(0,0,1), t.targetRotation);
-            movementmono.smoothTime = ((Vector3)t.targetPosition + 
-                source.transform.position - source.DefaultPosition).magnitude / t.speed; 
+            MovementMono.StartMove(source.owner.gameObject, t.targetPosition + (Vector2)source.DefaultPosition,
+                Quaternion.LookRotation(new Vector3(0, 0, 1), t.targetRotation), t.speed);
         }
     }
     public class MovementMono : MonoBehaviour
@@ -67,7 +66,21 @@ namespace STD
         public float smoothTime = 0.3f; // 平滑时间
         public float dampConstant = 2.0f; // 阻尼常数
         private Vector3 velocity = Vector3.zero; // 当前速度
-
+        public float enterTime;
+#nullable enable
+        public event Action? MoveEnd;
+#nullable disable
+        public static MovementMono StartMove(GameObject target, Vector2 position,  Quaternion rotation, float speed)
+        {
+            var mm = target.GetOrAddComponent<MovementMono>();
+            mm.targetPosition = position;
+            mm.targetRotation = rotation;
+            mm.enterTime = Time.time;
+            var u = ((Vector3)mm.targetPosition - mm.transform.position).magnitude;
+            mm.smoothTime = u
+                / speed;
+            return mm;
+        }
         void Update()
         {
             // 使用 SmoothDamp 实现平滑移动
@@ -91,16 +104,18 @@ namespace STD
             Quaternion newRotation = Quaternion.Slerp(transform.rotation, targetRotation, t);
             // 应用新的旋转到物体上
             transform.rotation = newRotation;
-            if ((targetPosition - (Vector2)transform.position).magnitude < 0.01f
-                && Quaternion.Angle(transform.rotation, targetRotation) < 0.01f)
+            if (Time.time - enterTime > smoothTime*6)
             {
+                transform.position = targetPosition;
+                transform.rotation = targetRotation;
+                MoveEnd?.Invoke();
                 Destroy(this);
             }
-
         }
         public float rotationSpeed; // 旋转速度，可以理解为每秒旋转的“比例”或“进度”
         void Start()
         {
+            enterTime = Time.time;
             rotationSpeed = 1 / smoothTime;
         }
     }
