@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
-using NSFrame;
-using System.Data.Common;
+using System;
 
 public class BubbleController : MonoBehaviour {
 
 	[Header("挂载")]
+	public GameController GameController;
 	public Transform Bubble;
 	public Transform FloatingSizeInspect;
 	public GameObject FootCollider;
@@ -231,6 +231,16 @@ public class BubbleController : MonoBehaviour {
 		_rigidbody.velocityY = 0.5f;
 		yield return new WaitForSeconds(0.15f);
 		_rigidbody.velocityY = 0;
+	}
+
+	public void Die() {
+		Debug.Log("Bubble Die");
+		BubbleAnimator.SetTrigger("Die");
+		if (!GameController.IsFinalStage)
+			GameController.FailGame();
+	}
+	public void Restart() {
+		BubbleAnimator.SetTrigger("Restart");
 	}
 
   #region Utilities 

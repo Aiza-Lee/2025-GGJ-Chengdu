@@ -1055,6 +1055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04980dc80867bfc47831b2928911ed12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameController: {fileID: 0}
   Bubble: {fileID: 69579074473378941}
   FloatingSizeInspect: {fileID: 1961843816889420735}
   FootCollider: {fileID: 1957750253423775291}
@@ -1119,7 +1120,7 @@ Rigidbody2D:
   m_LinearDrag: 0.8
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e961eb4dfc8d185488524d2507787efc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

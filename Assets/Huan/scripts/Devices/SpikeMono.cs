@@ -33,7 +33,16 @@ namespace STD
             }
             if((sender.ContactType & source.ableContactType) > 0)
             {
-                throw new Exception("游戏失败");
+                var playerController = ((MonoBehaviour)sender).gameObject.GetComponent<Player>();
+				if (playerController != null) {
+					playerController.Die();
+					return;
+				}
+				var bubbleController = ((MonoBehaviour)sender).gameObject.transform.parent.GetComponent<BubbleController>();
+				if (bubbleController != null) {
+					bubbleController.Die();
+					return;
+				}
             }
         }
 

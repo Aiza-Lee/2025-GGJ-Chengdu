@@ -1,9 +1,12 @@
 using System.Xml;
 using UnityEngine;
 
-namespace STD{
+namespace STD {
     public class Player : MonoBehaviour
     {
+		[Header("挂载")]
+		public GameController GameController;
+
         private Rigidbody2D thisRigidBody;
 		private Animator _animator;
 
@@ -66,14 +69,22 @@ namespace STD{
 			CheckDirection();
 		}
 		private void CheckDirection() {
-		// 考虑使用 Sprite Render 组件的 Flip 实现
-		if (Input.GetKey(KeyCode.LeftArrow) && transform.localScale.x < 0) {
-			transform.localScale = new(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-		} 
-		if (Input.GetKey(KeyCode.RightArrow) && transform.localScale.x > 0) {
-			transform.localScale = new(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-		} 
-	}
+			// 考虑使用 Sprite Render 组件的 Flip 实现
+			if (Input.GetKey(KeyCode.LeftArrow) && transform.localScale.x < 0) {
+				transform.localScale = new(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+			} 
+			if (Input.GetKey(KeyCode.RightArrow) && transform.localScale.x > 0) {
+				transform.localScale = new(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+			} 
+		}
+
+		public void Die() {
+			_animator.SetTrigger("Die");
+			GameController.FailGame();
+		}
+		public void Restart() {
+			_animator.SetTrigger("Restart");
+		}
     }
 }
 

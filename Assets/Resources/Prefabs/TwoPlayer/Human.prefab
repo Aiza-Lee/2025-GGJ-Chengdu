@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 579192390178966402}
-  - component: {fileID: 3934154972164228688}
   - component: {fileID: 9200707051593498355}
+  - component: {fileID: 3934154972164228688}
   - component: {fileID: 7407442942424299329}
   - component: {fileID: 3391863678084445638}
   - component: {fileID: 8155972368244123514}
@@ -41,6 +41,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0.17, y: -2.52}
   m_SizeDelta: {x: 1, y: 2}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &9200707051593498355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8012083111715014420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66821e90b85808341b246f08ec1b8ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameController: {fileID: 0}
+  MoveSpeed: 4.5
+  JumpSpeed: 13
 --- !u!50 &3934154972164228688
 Rigidbody2D:
   serializedVersion: 4
@@ -68,20 +83,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &9200707051593498355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8012083111715014420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66821e90b85808341b246f08ec1b8ad0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 4.5
-  JumpSpeed: 13
 --- !u!114 &7407442942424299329
 MonoBehaviour:
   m_ObjectHideFlags: 0
