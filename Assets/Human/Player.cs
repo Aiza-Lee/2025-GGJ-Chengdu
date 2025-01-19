@@ -1,11 +1,15 @@
 using System.Xml;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace STD {
     public class Player : MonoBehaviour
     {
 		[Header("挂载")]
 		public GameController GameController;
+		public GameObject BubblePrefab;
+
+		public int BubbleCountOnDie = 10;
 
         private Rigidbody2D thisRigidBody;
 		private Animator _animator;
@@ -36,15 +40,10 @@ namespace STD {
 				_animator.SetBool("IsRunning", true);
                 thisRigidBody.velocity = thisRigidBody.velocity + new Vector2(-thisRigidBody.velocity.x - MoveSpeed, 0);
             }
-            else if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow))
             {
 				_animator.SetBool("IsRunning", true);
                 thisRigidBody.velocity = thisRigidBody.velocity + new Vector2(-thisRigidBody.velocity.x + MoveSpeed, 0);
-            }
-            else
-            {
-				_animator.SetBool("IsRunning", false);
-                thisRigidBody.velocity = thisRigidBody.velocity + new Vector2(-thisRigidBody.velocity.x, 0);
             }
             
             if (Input.GetKey(KeyCode.Mouse0))
@@ -66,6 +65,10 @@ namespace STD {
                     thisRigidBody.velocity = thisRigidBody.velocity + new Vector2(0, JumpSpeed - thisRigidBody.velocity.y);
                 }
             }
+			if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)) {
+				_animator.SetBool("IsRunning", false);
+				thisRigidBody.velocity = Vector2.zero;
+			}
 			CheckDirection();
 		}
 		private void CheckDirection() {
@@ -79,11 +82,15 @@ namespace STD {
 		}
 
 		public void Die() {
-			_animator.SetTrigger("Die");
+			for (int i = 0; i < BubbleCountOnDie; ++i) {
+				var bubble = GameObject.Instantiate(BubblePrefab, transform.position + new Vector3(0f, 1f), new());
+				var rb = bubble.GetComponent<Rigidbody2D>();
+				Vector2 randomDirection = Random.insideUnitCircle.normalized;
+				float speed = Random.Range(0f, 1f);
+				rb.AddForce(randomDirection * speed, ForceMode2D.Impulse);
+			}
+			gameObject.SetActive(false);
 			GameController.FailGame();
-		}
-		public void Restart() {
-			_animator.SetTrigger("Restart");
 		}
     }
 }

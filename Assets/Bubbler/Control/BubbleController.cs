@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using System;
+using Random = UnityEngine.Random;
 
 public class BubbleController : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class BubbleController : MonoBehaviour {
 	public Transform FloatingSizeInspect;
 	public GameObject FootCollider;
 	public Animator BubbleAnimator;
+	public GameObject BoomArea;
+	public GameObject BubblePrefab;
 
 	[Space(20)]
 	public float MoveSpeed;
@@ -25,6 +28,8 @@ public class BubbleController : MonoBehaviour {
 	public float DecreaseSpeed;
 	public AnimationCurve SizeCurve;
 	public float WeightGainPerBubble;
+	public float BubbleCountOnDie = 10;
+	public float BoomForce;
 
 
 	[Header("Debug Area")]
@@ -234,13 +239,25 @@ public class BubbleController : MonoBehaviour {
 	}
 
 	public void Die() {
-		Debug.Log("Bubble Die");
+		// Debug.Log("Bubble Die");
 		BubbleAnimator.SetTrigger("Die");
+
+		Vector3 centerPos = transform.GetChild(0).position;
+		for (int i = 0; i < BubbleCountOnDie; ++i) {
+			Vector2 randomDirection = Random.insideUnitCircle.normalized;
+			GameObject.Instantiate(BubblePrefab, centerPos + (Vector3)randomDirection / 2, new());
+		}
+
+		StartCoroutine(WaitFor(0.1f, ()=> {
+			BoomArea.SetActive(true);
+		}));
+
 		if (!GameController.IsFinalStage)
 			GameController.FailGame();
 	}
-	public void Restart() {
-		BubbleAnimator.SetTrigger("Restart");
+	private IEnumerator WaitFor(float time, Action action) {
+		yield return new WaitForSecondsRealtime(time);
+		action?.Invoke();
 	}
 
   #region Utilities 

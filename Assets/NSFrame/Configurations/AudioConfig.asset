@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2e6c56d6ec87a140aeb9bc1f9700b34, type: 3}
+  m_Name: AudioConfig
+  m_EditorClassIdentifier: 
+  SFXAudioSourcePrefab: {fileID: 5357904335451603249, guid: 1bd80fd0fb8e0c748a9902b5c990898b, type: 3}
+  _globalVolume: 0.643
+  _bgmVolume: 0.827
+  _sfxVolume: 0.474
+  _muteBGM: 0
+  _muteSFX: 0
+  BGMAudioClips: []
+  SFXAuidoClips: []

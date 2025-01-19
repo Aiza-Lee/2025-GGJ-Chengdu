@@ -81,6 +81,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8233e381e8f4c7643a5404cfd662823b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &933945006468516323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8341424753283836149}
+  - component: {fileID: 8086438751963022214}
+  - component: {fileID: 1917833942613190121}
+  m_Layer: 11
+  m_Name: BoomTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8341424753283836149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933945006468516323}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.66, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2018192550070745066}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &8086438751963022214
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933945006468516323}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 3072
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1015
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 3.09
+--- !u!114 &1917833942613190121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933945006468516323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4dff82975334ed46ac75a5ad5c0abcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1957750253423775291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1118,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 606131160491146376}
+  - {fileID: 8341424753283836149}
   - {fileID: 9069629646109054419}
   - {fileID: 8999471246512211470}
   - {fileID: 1961843816889420735}
@@ -1060,6 +1142,8 @@ MonoBehaviour:
   FloatingSizeInspect: {fileID: 1961843816889420735}
   FootCollider: {fileID: 1957750253423775291}
   BubbleAnimator: {fileID: 27254845901270610}
+  BoomArea: {fileID: 933945006468516323}
+  BubblePrefab: {fileID: 8906641271005238165, guid: 909f5fc7c2ade0b49b6d0c64fc6dddc6, type: 3}
   MoveSpeed: 17
   StickedSpeed: 5
   JumpStrength: 6
@@ -1096,6 +1180,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   WeightGainPerBubble: 0.5
+  BubbleCountOnDie: 20
+  BoomForce: 10
   CurVelocityX: 0
   CurVelocityY: 0
   InAir: 1

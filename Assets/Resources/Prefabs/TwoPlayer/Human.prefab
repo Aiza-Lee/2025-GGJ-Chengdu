@@ -54,6 +54,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameController: {fileID: 0}
+  BubblePrefab: {fileID: 2734672148259939381, guid: e3fe3cc68f642b24a9d0c0dd4055d783, type: 3}
+  BubbleCountOnDie: 20
   MoveSpeed: 4.5
   JumpSpeed: 13
 --- !u!50 &3934154972164228688
@@ -72,7 +74,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e961eb4dfc8d185488524d2507787efc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

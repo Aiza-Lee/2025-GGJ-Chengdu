@@ -1,5 +1,6 @@
 using STD;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -37,10 +38,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void ResetGame() {
-		BubblerTransform.position = _bubblerPos;
-		_bubbleController.Restart();
-		HumanTransform.position = _humanPos;
-
-		GameOverCanvas.SetActive(false);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }
