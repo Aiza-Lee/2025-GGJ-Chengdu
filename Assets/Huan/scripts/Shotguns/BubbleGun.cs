@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using NSFrame;
 using UnityEngine;
 
 namespace STD
@@ -41,6 +42,7 @@ namespace STD
         {
             if(Time.time - lastShotTimeS > coolDownTimeS && Ammo > Ammocost)
             {
+				AudioSystem.PlaySFX("bubble");
                 Ammo -= Ammocost;
                 lastShotTimeS = Time.time;
                 baseShot(transform, "BubbleBullet");

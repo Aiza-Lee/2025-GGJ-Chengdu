@@ -103,11 +103,11 @@ namespace STD
             // 计算平滑旋转后的四元数
             Quaternion newRotation = Quaternion.Slerp(transform.rotation, targetRotation, t);
             // 应用新的旋转到物体上
-            transform.rotation = newRotation;
+           //transform.rotation = newRotation;
             if (Time.time - enterTime > smoothTime*6)
             {
                 transform.position = targetPosition;
-                transform.rotation = targetRotation;
+                //stransform.rotation = targetRotation;
                 MoveEnd?.Invoke();
                 Destroy(this);
             }

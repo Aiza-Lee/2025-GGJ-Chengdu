@@ -23,5 +23,9 @@ namespace NSFrame
 			Debug.LogError($"NS: Can't find configuration named \"{typeof(T)}\".");
 			return null;
 		}
+
+		private void Start() {
+			AudioSystem.PlayBGM("1");
+		}
 	}
 }

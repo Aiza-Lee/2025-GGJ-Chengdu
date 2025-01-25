@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using System;
 using Random = UnityEngine.Random;
+using STD;
 
 public class BubbleController : MonoBehaviour {
 
@@ -127,6 +128,13 @@ public class BubbleController : MonoBehaviour {
 		// test:
 		if (Input.GetKey(KeyCode.LeftShift)) {
 			BubbleSize += Time.deltaTime * DecreaseSpeed * 10;
+		}
+		
+		if (Input.GetKeyDown(KeyCode.S)) {
+			Bubble.GetComponent<ContactMono>().InteractW();
+		}
+		if (Input.GetKeyDown(KeyCode.Z)) {
+			Die();
 		}
 
 		if (InAir || IsFlying) return;

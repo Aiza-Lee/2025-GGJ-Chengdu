@@ -12,12 +12,8 @@ namespace STD
 #nullable enable
         public event Action<IContact, DeviceInteraction>? OnInteract;
 #nullable disable
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                OnInteract?.Invoke(this, DeviceInteraction.Interact);
-            }
-        }
+		public void InteractW(){
+			OnInteract?.Invoke(this, DeviceInteraction.Interact);
+		}
     }
 }

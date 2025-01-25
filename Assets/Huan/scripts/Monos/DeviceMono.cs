@@ -26,15 +26,14 @@ namespace Assets.scripts
         public string Device;
         public void Awake() 
         { 
-            var devicemono = ((IDeviceMono)GetComponent(DIService.GoFind(Device)));
+            var devicemono = (IDeviceMono)GetComponent(DIService.GoFind(Device));
             device = devicemono.device;
             devicemono.owner = this;
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             triggerCount++;
-            var obj = collision.gameObject.GetComponent<ContactMono>();
-            if (obj == null) return;
+            if (!collision.gameObject.TryGetComponent<ContactMono>(out var obj)) return;
             device.Activate(obj, DeviceInteraction.Enter);
             obj.OnInteract += device.Activate;
         }

@@ -1,4 +1,5 @@
 using System.Xml;
+using NSFrame;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -68,6 +69,9 @@ namespace STD {
 			if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow)) {
 				_animator.SetBool("IsRunning", false);
 				thisRigidBody.velocity = Vector2.zero;
+			}
+			if (Input.GetKeyDown(KeyCode.DownArrow)){
+				GetComponent<ContactMono>().InteractW();
 			}
 			CheckDirection();
 		}

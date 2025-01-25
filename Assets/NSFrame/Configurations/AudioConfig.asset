@@ -13,10 +13,26 @@ MonoBehaviour:
   m_Name: AudioConfig
   m_EditorClassIdentifier: 
   SFXAudioSourcePrefab: {fileID: 5357904335451603249, guid: 1bd80fd0fb8e0c748a9902b5c990898b, type: 3}
-  _globalVolume: 0.643
-  _bgmVolume: 0.827
-  _sfxVolume: 0.474
+  _globalVolume: 1
+  _bgmVolume: 1
+  _sfxVolume: 1
   _muteBGM: 0
   _muteSFX: 0
-  BGMAudioClips: []
-  SFXAuidoClips: []
+  BGMAudioClips:
+  - Key: 1
+    Value: {fileID: 8300000, guid: 63e82b078e2fcbd4cbfaa3af2d21f1db, type: 3}
+  - Key: 2
+    Value: {fileID: 8300000, guid: bdf28889b7dd1894a8eab052e2957dc1, type: 3}
+  - Key: 3
+    Value: {fileID: 8300000, guid: 3831768a5e2b2ee46b977d414899f955, type: 3}
+  - Key: 4
+    Value: {fileID: 8300000, guid: 34488551337b5e647afb9c5e04ff0459, type: 3}
+  - Key: 5
+    Value: {fileID: 8300000, guid: 498fc9bcde357f9418725cc09f991a56, type: 3}
+  - Key: 6
+    Value: {fileID: 8300000, guid: 0022dbfd77c12e948b1f84fcc54fc8cd, type: 3}
+  - Key: 7
+    Value: {fileID: 8300000, guid: 15a287629131a98439a6d762dcc6c4b2, type: 3}
+  SFXAuidoClips:
+  - Key: bubble
+    Value: {fileID: 8300000, guid: fc34a2b4ce968e24fa7716d89c3c5f5c, type: 3}
